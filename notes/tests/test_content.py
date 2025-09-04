@@ -10,6 +10,11 @@ User = get_user_model()
 
 
 class TestCreateUpdatePage(TestCase):
+    """Тестирование содержания.
+
+    1. Анонимному пользователю не видна форма для отправки заметки на странице
+        отдельной новости, а авторизованному видна.
+    """
 
     @classmethod
     def setUpTestData(cls):
@@ -19,7 +24,7 @@ class TestCreateUpdatePage(TestCase):
             title='Заметка',
             text='Просто текст.',
             slug='slug',
-            )
+        )
         cls.detail_url = reverse('notes:detail', args=(cls.note.slug,))
 
     def test_anonymous_client_has_no_form(self):
