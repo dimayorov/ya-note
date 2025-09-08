@@ -11,6 +11,13 @@ User = get_user_model()
 
 
 class TestNoteCreation(TestCase):
+    """Тестирование логики.
+
+    1. Залогиненный пользователь может создать заметку, а анонимный — не может.
+    2. Невозможно создать две заметки с одинаковым slug.
+    3. Если при создании заметки не заполнен slug, то он формируется
+    автоматически, с помощью функции pytils.translit.slugify.
+    """
 
     @classmethod
     def setUpTestData(cls):
@@ -65,6 +72,12 @@ class TestNoteCreation(TestCase):
         self.assertEqual(notes_count, 1)
 
 class TestNoteEditDelete(TestCase):
+    """Тестирование логики.
+
+    4. Пользователь может редактировать и удалять свои заметки, но не может
+    редактировать или удалять чужие.
+    """
+
     NOTE_TEXT = 'Текст комментария'
     NEW_NOTE_TEXT = 'Обновлённый комментарий'
 

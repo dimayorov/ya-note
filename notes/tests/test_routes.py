@@ -1,4 +1,3 @@
-# news/tests/test_routes.py
 from http import HTTPStatus
 
 # Импортируем функцию для определения модели пользователя.
@@ -29,10 +28,8 @@ class TestRoutes(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        # Создаём двух пользователей с разными именами:
         cls.author = User.objects.create(username='Автор')
         cls.another_author = User.objects.create(username='Другой автор')
-        # От имени одного пользователя создаём заметку:
         cls.note = Note.objects.create(
             title='Заголовок',
             text='Текст',

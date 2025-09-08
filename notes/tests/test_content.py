@@ -28,6 +28,10 @@ class TestCreateUpdatePage(TestCase):
         cls.detail_url = reverse('notes:detail', args=(cls.note.slug,))
 
     def test_anonymous_client_has_no_form(self):
+        """Тест на отсутсвие формы на страницах анонимного пользователя.
+
+        Проверяются страницы создания и редактирования заметки.
+        """
 
         for name in ('notes:add', 'notes:edit'):
             with self.subTest(name=name):
@@ -35,6 +39,10 @@ class TestCreateUpdatePage(TestCase):
                 self.assertNotIn('form', response.context)
 
     def test_authorized_client_has_form(self):
+        """Тест на наличие формы на страницах авторизованного пользователя.
+
+        Проверяются страницы создания и редактирований заметки.
+        """
         self.client.force_login(self.author)
         for name, arg in (
             ('notes:add', None),
